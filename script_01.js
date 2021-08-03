@@ -23,27 +23,37 @@
 // Modul Dateneingabe + -überprüfung | Start der Applikation
 
 
-startApp();
+startApp()
 
-function startApp(){
-    output(rechner(getZahl1(),getOp(),getZahl2()));
-
+function startApp() {
+  output(rechner(getZahl("1"),getOp(),getZahl("2"))); 
 }
 
-function getZahl1(){
-    return 10;
+// Modul: Zahl eingeben | Test:
+// ausgabe(getZahl("1"));
+function getZahl(numStr) {
+
+    const displayStr = "Bitte Zahl " + numStr + " eingeben."
+    let ziffer =  prompt(displayStr);
+    let zahl = parseInt(ziffer);
+
+    while (isNaN(zahl) && (ziffer !== null)) {
+        ziffer =  prompt(displayStr);
+        zahl = parseInt(ziffer); 
+    }
+
+    return zahl; 
 }
 
-function getZahl2(){
-    return 4;
-}
+
 
 // Modul: Operand eingeben | Test:
+
 // output(getOp());
 function getOp(){
-    let op = prompt("Bitte | + | - | * | / | eingeben");    
-    while(!isOpValid(op)){           // ist der Operator gültig (valide)? 
-        op = prompt("Bitte | + | - | * | / | eingeben") 
+    let op = prompt("Bitte | + | - | * | / | eingeben.");    
+    while(!isOpValid(op) && (op !== null)){           // ist der Operator gültig (valide)? Die zweite klammer um die schleife zu verlassen, wenn abbrechen geklickt wird
+        op = prompt("Bitte | + | - | * | / | eingeben.") 
     }
         return op;
 
@@ -52,7 +62,8 @@ function getOp(){
                                                             
                                            
 
-    // Modul: Operand überprüfen | Test
+// Modul: Operand überprüfen | Test
+
 // output(isOpValid("+"));
 // output(isOpValid("-"));
 // output(isOpValid("*"));
@@ -63,7 +74,8 @@ function getOp(){
 
 function isOpValid(op){
 
-     // 1. Variante -- switch
+// 1. Variante -- switch
+
 //     switch(op){
 //         case "+":
 //         case "-":
@@ -108,19 +120,6 @@ function rechner(a,op,b){           // a,b --> Operanden / Operatoren: +,- ..
 
 }
 
-
-
-// Modul: Konsolenausgabe Verbesserung | Test:
-
-function output(outputStr){
-    
-    if (typeof outputStr === "number"  /*"outputStr ist eine Zahl"*/){
-        outputStr = "Das Ergebnis ist: " + outputStr
-    }
-
-    // console.log(typeof outputStr);
-    console.log(outputStr);
-}
 
 
 
@@ -184,6 +183,20 @@ function subtrahieren(a,b){
         return a + b;
 }
 
+
+// Modul: Konsolenausgabe Verbesserung | Test:
+
+// output(29);
+function output(outputStr){
+    // console.log(typeof outputStr);      // um den Typ zu testen
+
+    if (typeof outputStr === "number"  /*"outputStr ist eine Zahl"*/){
+        outputStr = "Das Ergebnis ist: " + outputStr
+    }
+
+    
+    console.log(outputStr);
+}
 
 
 // Modul: Konsolenausgabe | Test:
